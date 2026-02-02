@@ -35,35 +35,31 @@ The system is designed to handle real-world scenarios such as:
 
 ## High-Level Architecture (Flow Graph)
 
-     ┌──────────────┐
-        │   User Query │
-        └──────┬───────┘
-               │
+            ┌──────────────┐
+            │   User Query │
+            └──────┬───────┘
+                   │
+                   ▼
+          ┌─────────────────┐
+          │  Router Node     │
+          │ (LLM-based JSON) │
+          └──────┬──────────┘
+        ┌─────────┴─────────┐
+        ▼                   ▼
+┌──────────────┐     ┌──────────────┐
+│ AstraDB      │     │ Wikipedia    │
+│ Vector Store │     │ Search Tool  │
+└──────┬───────┘     └──────┬───────┘
+       ▼                    ▼
+        ┌─────────────────┐
+        │ Generation Node  │
+        │ (LLM Answer)     │
+        └──────┬──────────┘
                ▼
-      ┌─────────────────┐
-      │  Router Node     │
-      │ (LLM-based JSON) │
-      └──────┬──────────┘
-    ┌─────────┴─────────┐
-    ▼                   ▼
-┌──────────────┐ ┌──────────────┐
-│ AstraDB │ │ Wikipedia │
-│ Vector Store │ │ Search Tool │
-└──────┬───────┘ └──────┬───────┘
-▼ ▼
-┌─────────────────┐
-│ Generation Node │
-│ (LLM Answer) │
-└──────┬──────────┘
-▼
-┌──────────────┐
-│ Final Answer │
-└──────────────┘
+        ┌──────────────┐
+        │ Final Answer │
+        └──────────────┘
 
-
-
-
----
 
 ## Key Components
 
