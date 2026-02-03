@@ -128,7 +128,7 @@ The application is CLI-based, so the container executes and exits after producin
 - Explicit workflow control using LangGraph
 - Designed with production edge cases in mind
 
-Project Status
+###Project Status
 
 End-to-end RAG pipeline implemented
 
